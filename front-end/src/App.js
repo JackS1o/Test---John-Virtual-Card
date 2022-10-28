@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [userData, setUserData] = useState({
+    name: "",
+    linkedin: "",
+    github: "",
+  });
+
+  const dataInput = ({ target }) => {
+    const { name, value } = target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>QR Code Generator</h1>
       </header>
+      <div>
+        <label htmlFor="url">
+          Name
+          <input
+            type="text"
+            placeholder="Type your name"
+            name="name"
+            value={userData.name}
+            onChange={dataInput}
+          />
+        </label>
+        <label htmlFor="url">
+          LinkedIn URL
+          <input
+            type="text"
+            placeholder="Type your LinkedIn URL"
+            name="linkedin"
+            value={userData.linkedin}
+            onChange={dataInput}
+          />
+        </label>
+        <label htmlFor="url">
+          GitHub URL
+          <input
+            type="text"
+            placeholder="Type your GitHub URL"
+            name="github"
+            value={userData.github}
+            onChange={dataInput}
+          />
+        </label>
+      </div>
     </div>
   );
 }
