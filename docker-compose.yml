@@ -1,0 +1,62 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: '3.1'
+services:
+    front-end:
+        build: ./frontend
+        environment:
+        #https://stackoverflow.com/questions/70585472/websocketclient-js16-websocket-connection-to-ws-localhost3000-ws-failed-r
+            - WDS_SOCKET_PORT=0
+        container_name: frontend
+        ports:
+            - "4000:3000"
+        volumes:
+            - ./frontend/public:/srv/frontend/public
+            - ./frontend/src:/srv/frontend/src
+            - ./frontend/package.json:/srv/frontend/package.json
+            - ./frontend/package-lock.json:/srv/frontend/package-lock.json
+            - ./frontend/.eslintrc.json:/srv/frontend/.eslintrc.json
+        restart: always
+        command: bash -c "npm install && npm start"
+        networks:
+            - qrcode-project
+        depends_on:
+            - php-fpm
+
+    mysql:
+        image: 'mysql:8.0'
+        working_dir: /application
+        volumes:
+            - '.:/application'
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=QRCodeDB
+            - MYSQL_PASSWORD=password
+        ports:
+            - '4002:3306'
+
+    webserver:
+        image: 'nginx:alpine'
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './backend/phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+        ports:
+            - '4001:8000'
+
+    php-fpm:
+        build: backend/phpdocker/php-fpm
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
+
+networks:
+  rede:
+    driver: bridge
+    name: rede
+
+  qrcode-project:
+    driver: bridge
+    name: QRCode
