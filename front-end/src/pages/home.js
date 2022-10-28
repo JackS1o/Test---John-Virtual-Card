@@ -25,7 +25,7 @@ function Home() {
           Name
           <input
             type="text"
-            placeholder="Type your name"
+            placeholder="Type your First Name"
             name="name"
             value={userData.name}
             onChange={dataInput}
