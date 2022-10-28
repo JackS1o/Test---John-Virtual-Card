@@ -24,12 +24,10 @@ services:
     build: ./backend
     # env_file: ./backend/.env
     environment:
-      - MYSQL_HOST=db
-      - MYSQL_PORT=3306
-      - MYSQL_PASSWORD=password
-      - MYSQL_USER=root
-      - JWT_SECRET=testando
-      - API_PORT=3001
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
     container_name: backend
     ports:
       - "4001:3001"
@@ -50,14 +48,12 @@ services:
     platform: linux/x86_64
     restart: always
     environment:
-        - MYSQL_ROOT_PASSWORD=password
-        - MYSQL_DATABASE=QRCodeDB
-        - MYSQL_PASSWORD=password
-    expose: 
-      - '4306'
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
     ports:
-      - 4306:3306
-      - 43060:33060
+      - 3306:3306
     networks:
       - rede
 networks:

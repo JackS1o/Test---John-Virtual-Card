@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../Context/context";
+import createUser from "../api/createUser";
 
 function Home() {
   const { userData, setUserData } = useContext(Context);
@@ -14,6 +15,14 @@ function Home() {
       [name]: value,
     });
   };
+
+  const sendData = async () => {
+    const result = await createUser(userData);
+    if (result.message === 'Usuário criado com sucesso') {
+      alert("User created successfully");
+      navigate("/qrcode");
+    }
+  }
 
   return (
     <div>
@@ -53,9 +62,7 @@ function Home() {
         </label>
         <button
           type="button"
-          onClick={() => {
-            navigate("/qrcode");
-          }}
+          onClick={sendData}
         >
           Generate QR Code
         </button>

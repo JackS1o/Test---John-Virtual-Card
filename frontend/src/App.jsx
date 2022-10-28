@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/qrcode" element={<QRCodeGenerator />} />
-        <Route exact path="/:id" element={<UserPage />} />
+        <Route exact path="/userPage" element={<UserPage />} />
       </Routes>
     </ContextProvider>
   );

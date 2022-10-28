@@ -1,10 +1,10 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-const user = async (body) => {
-  const userEmail = await prisma.user.findUnique({
-    where: {
-      email: body.name,
+const user = async () => {
+  const userEmail = await prisma.user.findFirst({
+    orderBy: {
+      id: 'desc',
     },
   });
   if (!userEmail) return false;
@@ -19,6 +19,7 @@ const createUser = async (body) => {
       github: body.github,
     },
   });
+  if (!user) return false;
   return user;
 }
 
