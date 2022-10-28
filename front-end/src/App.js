@@ -1,58 +1,16 @@
-import { useState } from "react";
+import Home from "./pages/home";
+import { Routes, Route } from "react-router-dom";
+import QRCodeGenerator from "./pages/QRCodeGenerator";
+import ContextProvider from "./Context/contextProvider";
 
 function App() {
-  const [userData, setUserData] = useState({
-    name: "",
-    linkedin: "",
-    github: "",
-  });
-
-  const dataInput = ({ target }) => {
-    const { name, value } = target;
-    setUserData({
-      ...userData,
-      [name]: value,
-    });
-  };
-
   return (
-    <div>
-      <header>
-        <h1>QR Code Generator</h1>
-      </header>
-      <div>
-        <label htmlFor="url">
-          Name
-          <input
-            type="text"
-            placeholder="Type your name"
-            name="name"
-            value={userData.name}
-            onChange={dataInput}
-          />
-        </label>
-        <label htmlFor="url">
-          LinkedIn URL
-          <input
-            type="text"
-            placeholder="Type your LinkedIn URL"
-            name="linkedin"
-            value={userData.linkedin}
-            onChange={dataInput}
-          />
-        </label>
-        <label htmlFor="url">
-          GitHub URL
-          <input
-            type="text"
-            placeholder="Type your GitHub URL"
-            name="github"
-            value={userData.github}
-            onChange={dataInput}
-          />
-        </label>
-      </div>
-    </div>
+    <ContextProvider>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/qrcode" element={<QRCodeGenerator />} />
+      </Routes>
+    </ContextProvider>
   );
 }
 
