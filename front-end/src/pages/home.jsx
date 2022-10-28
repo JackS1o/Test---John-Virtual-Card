@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Context from "../Context/context";
 
 function Home() {
-  const [userData, setUserData] = useState({
-    name: "",
-    linkedin: "",
-    github: "",
-  });
+  const { userData, setUserData } = useContext(Context);
+
   const navigate = useNavigate();
 
   const dataInput = ({ target }) => {

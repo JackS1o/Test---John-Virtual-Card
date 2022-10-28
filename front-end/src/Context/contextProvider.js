@@ -1,8 +1,18 @@
+import { useState } from "react";
 import Context from "./context";
 import PropTypes from 'prop-types';
 
 function ContextProvider({ children }) {
-  const context = {};
+  const [userData, setUserData] = useState({
+    name: "",
+    linkedin: "",
+    github: "",
+  });
+
+  const context = {
+    userData,
+    setUserData,
+  };
 
   return (
     <Context.Provider value={ context }>

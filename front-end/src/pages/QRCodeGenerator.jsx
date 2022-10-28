@@ -1,7 +1,9 @@
 import QRCode from 'qrcode';
+import Context from '../Context/context';
+import { useContext } from 'react';
 
 function QRCodeGenerator() {
-  
+  const { userData } = useContext(Context);
 
   return (
     <div>
