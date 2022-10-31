@@ -41,4 +41,4 @@ Após isso, você pode acessar a aplicação através do endereço http://localh
 
 # Detalhes sobre a aplicação
 
-Esta aplicação trata-se de um gerador de QR Code. Onde o usuário pode criar um QR Code para divulgação se suas redes sociais.
+Esta aplicação trata-se de um gerador de QR Code. Onde o usuário pode criar um QR Code para divulgação de suas redes sociais.
