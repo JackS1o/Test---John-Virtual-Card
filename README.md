@@ -16,6 +16,7 @@ Neste projeto, fui capaz de:
 - Criar rotas para uma API com Express;
 - Estilizar uma página web com CSS e Material UI;
 - Criar uma página web com React;
+- Subir a aplicação com Docker;
    
 ---
 
