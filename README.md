@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto <b>John Virtual Card/b>!
+# Boas vindas ao repositório do projeto <b>John Virtual Card</b>!
 
 Esse projeto foi desenvolvido para um teste técnico!
 
