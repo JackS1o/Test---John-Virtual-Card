@@ -36,7 +36,8 @@ npm run prisma
 na pasta backend do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível.
 
 Após isso, você pode acessar a aplicação através do endereço http://localhost:4000.
-```
+
+---
 
 # Detalhes sobre a aplicação
 
