@@ -1,0 +1,68 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./frontend
+    environment:
+    #https://stackoverflow.com/questions/70585472/websocketclient-js16-websocket-connection-to-ws-localhost3000-ws-failed-r
+      - WDS_SOCKET_PORT=0
+    container_name: frontend
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./frontend/public:/srv/frontend/public
+      - ./frontend/src:/srv/frontend/src
+      - ./frontend/package.json:/srv/frontend/package.json
+      - ./frontend/package-lock.json:/srv/frontend/package-lock.json
+      - ./frontend/.eslintrc.json:/srv/frontend/.eslintrc.json
+    restart: always
+    command: bash -c "npm install && npm start"
+    networks:
+      - qrcode-project
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    # env_file: ./backend/.env
+    environment:
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+    container_name: backend
+    ports:
+      - "4001:3001"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./backend:/srv/backend
+    restart: always
+    networks:
+      - qrcode-project
+      - rede
+    command: bash -c "npm install && npm start"
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: mysql:8.0.21
+    platform: linux/x86_64
+    restart: always
+    environment:
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+    cap_add:
+      - SYS_NICE
+    ports:
+      - 3306:3306
+    networks:
+      - rede
+networks:
+  rede:
+    driver: bridge
+    name: rede
+
+  qrcode-project:
+    driver: bridge
+    name: qrcode-project
