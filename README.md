@@ -28,7 +28,7 @@ Após clonar o projeto em seu computador, para iniciá-lo é necessário executa
 ```
 docker-compose up -d 
 ```
-e na sequência execute esses comandos, um por vez
+e na sequência execute esses comandos, um por vez no diretório backend
 ```
 npx prisma generate
 npm run prisma
