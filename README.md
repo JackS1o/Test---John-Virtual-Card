@@ -26,14 +26,14 @@ Para iniciar o projeto, é necessário possuir o [Docker](https://docs.docker.co
 
 Após clonar o projeto em seu computador, para iniciá-lo é necessário executar o comando
 ```
+npm run prisma
+
+```
+e no diretório backend. E em seguida, executar o comando
+```
 docker-compose up -d 
 ```
-e na sequência execute esses comandos, um por vez no diretório backend
-```
-npx prisma generate
-npm run prisma
-```
-na pasta backend do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível.
+na raíz do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível.
 
 Após isso, você pode acessar a aplicação através do endereço http://localhost:4000.
 

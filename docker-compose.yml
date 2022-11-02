@@ -22,12 +22,6 @@ services:
       - backend
   backend:
     build: ./backend
-    # env_file: ./backend/.env
-    environment:
-      MYSQL_PORT: 3306
-      MYSQL_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: password
     container_name: backend
     ports:
       - "4001:3001"
@@ -40,24 +34,6 @@ services:
       - qrcode-project
       - rede
     command: bash -c "npm install && npm start"
-    depends_on:
-      - db
-  db:
-    container_name: db
-    image: mysql:8.0.21
-    platform: linux/x86_64
-    restart: always
-    environment:
-      MYSQL_PORT: 3306
-      MYSQL_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: password
-    cap_add:
-      - SYS_NICE
-    ports:
-      - 3306:3306
-    networks:
-      - rede
 networks:
   rede:
     driver: bridge
