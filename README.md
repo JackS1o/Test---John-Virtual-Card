@@ -24,11 +24,11 @@ Neste projeto, fui capaz de:
 
 Para iniciar o projeto, é necessário possuir o [Docker](https://docs.docker.com/engine/install/ubuntu/) instalado.
 
-Após clonar o projeto em seu computador, para iniciá-lo é necessário executar o comando no diretório backend.
+Após clonar o projeto em seu computador, para iniciá-lo é necessário executar o seguinte comando no diretório backend.
 ```
 npm run prisma
 ```
-E em seguida, executar o comando na raíz do projeto. 
+E em seguida, executar o seguinte comando na raíz do projeto. 
 ```
 docker-compose up -d 
 ```
